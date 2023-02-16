@@ -2,7 +2,7 @@ import {GoogleMap} from '@capacitor/google-maps';
 
 export const useGoogleMaps = () => {
     const initMap = async () => {
-        const apiKey = 'AIzaSyCExHRH-XI6dzAcLb8lgyWiBAuiKhTBkrM';
+        const apiKey = process.env.VUE_APP_GM_API_KEY;
         const mapRef = document.getElementById('map') as HTMLElement;
 
         const newMap = await GoogleMap.create({
