@@ -2,22 +2,28 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Tab 2</ion-title>
+        <ion-title>Google Maps</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 2</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <ExploreContainer name="Tab 2 page" />
+      <div id="map"></div>
     </ion-content>
   </ion-page>
 </template>
 
-<script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+<script lang="ts" setup>
+import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/vue';
+import {useGoogleMaps} from "@/composables/useGoogleMaps";
+import {onMounted} from "vue";
+
+const {initMap} = useGoogleMaps()
+
+onMounted(initMap);
 </script>
+
+<style scoped>
+#map {
+  width: 100%;
+  height: 100%;
+}
+</style>

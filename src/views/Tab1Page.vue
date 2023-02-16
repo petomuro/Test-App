@@ -2,22 +2,47 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Tab 1</ion-title>
+        <ion-title>Photo Gallery</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 1</ion-title>
-        </ion-toolbar>
-      </ion-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col v-for="photo in photos" :key="photo" size="6">
+            <ion-img :src="photo.webviewPath" @click="showActionSheet(photo)"></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-      <ExploreContainer name="Tab 1 page" />
+      <ion-fab slot="fixed" horizontal="center" vertical="bottom">
+        <ion-fab-button @click="takePhoto()">
+          <ion-icon :icon="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
     </ion-content>
   </ion-page>
 </template>
 
-<script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+<script lang="ts" setup>
+import {
+  IonCol,
+  IonContent,
+  IonFab,
+  IonFabButton,
+  IonGrid,
+  IonHeader,
+  IonIcon,
+  IonImg,
+  IonPage,
+  IonRow,
+  IonTitle,
+  IonToolbar
+} from '@ionic/vue';
+import {camera} from 'ionicons/icons';
+import {usePhotoGallery} from '@/composables/usePhotoGallery';
+import {onMounted} from "vue";
+
+const {photos, takePhoto, loadSaved, showActionSheet} = usePhotoGallery();
+
+onMounted(loadSaved);
 </script>
