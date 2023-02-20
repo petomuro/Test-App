@@ -5,8 +5,7 @@
         <ion-title>Google Maps</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
-      <div id="map"></div>
+    <ion-content id="map" :fullscreen="true">
     </ion-content>
   </ion-page>
 </template>
